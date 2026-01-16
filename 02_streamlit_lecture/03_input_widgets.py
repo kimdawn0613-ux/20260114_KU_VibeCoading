@@ -289,3 +289,80 @@ with st.expander("💡 과제 2 예시 답안"):
             st.warning("📊 판정: 과체중")
         else:
             st.error("📊 판정: 비만")
+
+
+# 실습
+import streamlit as st
+
+st.set_page_config(page_title="BMI 계산기", page_icon="⚖️")
+st.title("⚖️ BMI 계산기")
+
+st.write("키와 몸무게를 입력한 후, **계산하기** 버튼을 눌러 BMI를 확인하세요.")
+
+# 키, 몸무게 숫자 직접 입력
+st.subheader("숫자 직접 입력")
+
+height_cm = st.number_input(
+    "키 (cm):",
+    min_value=100.0,
+    max_value=250.0,
+    value=170.0,
+    step=0.1,
+    key="bmi_height_input"   # 다른 곳과 겹치지 않는 key
+)
+weight_kg = st.number_input(
+    "몸무게 (kg):",
+    min_value=20.0,
+    max_value=200.0,
+    value=65.0,
+    step=0.1,
+    key="bmi_weight_input"   # 다른 곳과 겹치지 않는 key
+)
+
+if st.button("계산하기", key="bmi_calc_button"):
+    height_m = height_cm / 100
+    bmi = weight_kg / (height_m * height_m)
+
+    # BMI 판정
+    if bmi < 18.5:
+        status = "저체중"
+        box_type = "info"     # 파란색 계열
+    elif 18.5 <= bmi <= 22.9:
+        status = "정상"
+        box_type = "success"  # 초록
+    elif 23 <= bmi <= 24.9:
+        status = "과체중"
+        box_type = "warning"  # 노랑
+    else:
+        status = "비만"
+        box_type = "error"    # 빨강
+
+    st.subheader("BMI 결과")
+
+    msg = f"당신의 BMI는 **{bmi:.1f}** 이며, 판정은 **{status}** 입니다."
+
+    # 결과를 box_type에 따라 다른 함수로 출력
+    if box_type == "info":
+        st.info(msg)
+    elif box_type == "success":
+        st.success(msg)
+    elif box_type == "warning":
+        st.warning(msg)
+    elif box_type == "error":
+        st.error(msg)
+
+    # BMI 기준표
+    st.subheader("BMI 기준표")
+
+    bmi_table = {
+        "구분": ["저체중", "정상", "과체중", "비만"],
+        "BMI 범위": ["< 18.5", "18.5 ~ 22.9", "23 ~ 24.9", "≥ 25"],
+        "설명": [
+            "체중 증가가 필요합니다.",
+            "건강한 체중입니다.",
+            "생활 습관 관리가 필요합니다.",
+            "체중 조절과 관리가 필요합니다."
+        ],
+    }
+
+    st.table(bmi_table)

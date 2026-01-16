@@ -48,11 +48,13 @@ col1, col2 = st.columns(2)
 
 with col1:
     st.write("**왼쪽 컬럼**")
-    st.button("버튼 1", use_container_width=True)
+    st.button("버튼 1", use_container_width=True, key="left_btn1")
+    st.button("버튼 1", use_container_width=True, key="left_btn2")
 
 with col2:
     st.write("**오른쪽 컬럼**")
-    st.button("버튼 2", use_container_width=True)
+    st.button("버튼 2", use_container_width=True, key="right_btn1")
+    st.button("버튼 2", use_container_width=True, key="right_btn2")
 
 
 # 구분선
@@ -77,7 +79,7 @@ with col3:
 st.divider()
 st.header("2. 탭 레이아웃")
 
-tab1, tab2  = st.tabs(["⚙️ 설정", "ℹ️ 정보"])
+tab1, tab2, tab3  = st.tabs(["⚙️ 설정", "ℹ️ 정보", "new!"])
 
 with tab1:
     st.subheader("설정 탭")
@@ -95,6 +97,7 @@ with tab2:
     **개발자**: Streamlit Team  
     **라이선스**: MIT
     """)
+
 
 # ============================================
 # 4. 확장 가능한 섹션 (Expander)
@@ -154,6 +157,30 @@ st.markdown("""
    - 탭: 상세설명, 리뷰, 배송정보
    - Expander: FAQ
 """)
+
+# 실습
+
+import streamlit as st
+
+st.subheader("제품 상세 페이지")
+
+col1, col2 = st.columns(2)
+
+with col1:
+    # 실제 이미지 위치에 맞게 경로 수정
+    st.image("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ96jQ9W4bT93OXaPYPMiX3hSW3ioFRp-2mCA&s", use_container_width=True)
+
+with col2:
+    st.subheader("무선 헤드폰 Pro")
+    st.write("**₩299,000**")
+    st.write("⭐⭐⭐⭐⭐ (4.8) - 리뷰 324개")
+
+    # 여기에는 자유롭게 리뷰 내용 작성
+    st.markdown("---")
+    st.write("고급 노이즈 캔슬링 기능이 탑재된 프리미엄 무선 헤드폰")
+
+
+
 
 # 예시 답안
 with st.expander("💡 과제 1 예시 답안"):

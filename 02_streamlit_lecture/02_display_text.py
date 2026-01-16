@@ -13,7 +13,7 @@ st.header("1. 제목과 헤더")
 st.subheader("이것은 소제목입니다")
 
 st.write("""
-Streamlit은 다양한 방식으로 텍스트를 출력할 수 있습니다.
+Streamlit은 다양한 방식으로 텍스트를 출력할 수 있습니다.  
 각 함수의 용도를 이해하고 적절히 사용하는 것이 중요합니다.
 """)
 
@@ -24,7 +24,7 @@ st.divider()
 st.header("2. 일반 텍스트")
 
 st.text("이것은 st.text() 함수입니다.")
-st.write("이것은 st.write() 함수입니다. - 가장 많이 사용됩니다!")
+st.write("이것은 st.write() 함수입니다 - 가장 많이 사용됩니다!")
 
 # st.write는 마크다운도 지원합니다
 st.write("**굵은 글씨**, *기울임*, ~~취소선~~")
@@ -107,7 +107,7 @@ st.markdown("> 누구나 코딩을 할 수 있다. - 박태근")
 
 # 인터넷상 이미지
 st.caption("인터넷상 이미지 표시")
-st.image("https://i0.wp.com/magazine.contenta.co/wp-content/uploads/2021/02/1-1.jpg?ssl=1")
+st.image("https://mblogthumb-phinf.pstatic.net/MjAyNTAyMjVfMjIy/MDAxNzQwNDgyODk4NTM3.hRe-e6anlcn0Of2Vg50wYd9XYzXEJCdxbWJcFbGxZNMg.c72utYaqsRObhVeLe2vcN93a4gtQwMoklUdEnDOINvEg.PNG/image.PNG?type=w800",use_container_width=True)
 
 # 이미지 사이즈를 화면에 맞추고싶다면? 강제로 늘릴 수 있음
 st.image("https://placehold.co/300x300")
@@ -149,3 +149,117 @@ with st.expander("💡 예시 답안 보기"):
     """)
     
     st.info("이 기술은 2027년 상용화될 예정입니다.")
+
+
+
+import streamlit as st
+
+st.set_page_config(page_title="고양이 뉴스", page_icon="🐱")
+
+st.divider()
+st.header("📝 실습 과제")
+
+st.markdown("""
+### 과제: 뉴스 기사 만들기
+
+다음 요소들을 포함한 가상의 뉴스 기사를 만들어보세요:
+1. `st.title()`로 기사 제목
+2. `st.caption()`으로 작성자와 날짜
+3. `st.image()`로 이미지 (URL 사용 가능)
+4. `st.markdown()`으로 본문 내용
+5. `st.info()`로 관련 정보 박스
+6. `st.code()`로 코드나 데이터 예시
+""")
+
+st.divider()
+
+# 1. 기사 제목
+st.title("도심 한복판, ‘출근길 지휘자’ 고양이 화제")
+
+# 2. 작성자 & 날짜
+st.caption("작성자: 김코딩 · 2026-01-16")
+
+# 3. 이미지 (URL 사용)
+st.image(
+    "https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg",
+    caption="횡단보도에서 시민들을 바라보는 고양이 ‘모카’"
+)
+
+# 4. 본문 내용
+st.markdown(
+"""
+서울 시내 한 복잡한 사거리에 매일 아침 모습을 드러내는 길고양이 ‘모카’가 시민들의 출근길 풍경을 바꾸고 있다.
+
+주민들은 모카가 신호가 바뀔 때마다 횡단보도 앞 난간에 올라가
+마치 사람들을 바라보며 ‘출근을 독려’하는 듯한 행동을 보여
+온라인 커뮤니티와 SNS에서 큰 화제가 되고 있다고 전했다.
+
+인근 직장인 이모 씨(32)는 \n
+> “신호 기다리면서 멍하니 서 있다가도,  
+> 모카를 보면 묘하게 웃음이 나서 하루가 덜 피곤해진다” \n
+고 말했다.
+
+전문가들은 고양이 한 마리가 주는 소소한 즐거움이
+도시 생활 속 스트레스를 완화하는 데
+적지 않은 역할을 할 수 있다고 설명한다.
+
+한편, 구청은 주민들의 요청에 따라
+모카가 자주 머무는 화단 주변에
+**간이 급수대와 고양이 집을 설치하는 방안**을 검토 중이다.
+"""
+)
+
+# 5. 관련 정보 박스
+st.info(
+"""
+### 관련 정보: 길고양이와 공존 가이드
+
+- **먹이 주기**: 한 곳, 일정한 시간에만 급여하는 것이 좋습니다.  
+- **위생 관리**: 사료 남은 것은 수거하고, 물그릇은 정기적으로 교체하세요.  
+- **중성화(TNR)**: 개체 수 조절과 건강을 위해 지자체 TNR 사업을 활용하세요.  
+- **갈등 예방**: 이웃과 충분히 상의하고, 급여 장소 주변을 청결하게 유지해야 합니다.
+"""
+)
+
+# 6. 코드나 데이터 예시
+st.subheader("부록: 모카 출현 시간 데이터 예시")
+
+code_example = """
+import pandas as pd
+
+data = {
+    "날짜": ["2026-01-10", "2026-01-11", "2026-01-12", "2026-01-13"],
+    "평균_등장_시각": ["08:10", "08:05", "08:12", "08:07"],
+    "머무른_시간_분": [15, 20, 18, 22],
+}
+
+df = pd.DataFrame(data)
+print(df)
+"""
+
+import pandas as pd
+data = {
+    "날짜": ["2026-01-10", "2026-01-11", "2026-01-12", "2026-01-13"],
+    "평균_등장_시각": ["08:10", "08:05", "08:12", "08:07"],
+    "머무른_시간_분": [15, 20, 18, 22],
+}
+
+df = pd.DataFrame(data)
+
+
+st.table(df)
+
+
+st.code(code_example, language="python")
+
+st.markdown("위 데이터를 실제로 사용하면 출현 패턴을 시각화할 수도 있습니다:")
+
+# 실제로 한 번 보여주는 예시 (옵션)
+import pandas as pd
+
+data = {
+    "날짜": ["2026-01-10", "2026-01-11", "2026-01-12", "2026-01-13"],
+    "머무른_시간_분": [15, 20, 18, 22],
+}
+df = pd.DataFrame(data)
+st.bar_chart(df.set_index("날짜"))
