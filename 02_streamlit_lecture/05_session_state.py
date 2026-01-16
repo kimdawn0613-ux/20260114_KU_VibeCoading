@@ -55,7 +55,7 @@ if st.session_state.flushed_texts:
         st.markdown("### 📋 저장된 텍스트 목록:")
         st.markdown("---")
         
-        # 저장된 텍스트를 순서대로 출력
+        # 저장된 텍스트를 순서대로 출력 (in enumerate)
         for idx, text in enumerate(st.session_state.flushed_texts, 1):
             st.markdown(f"**{idx}.** {text}")
         

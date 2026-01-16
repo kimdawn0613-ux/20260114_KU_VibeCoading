@@ -180,8 +180,6 @@ with col2:
     st.write("고급 노이즈 캔슬링 기능이 탑재된 프리미엄 무선 헤드폰")
 
 
-
-
 # 예시 답안
 with st.expander("💡 과제 1 예시 답안"):
     st.subheader("제품 상세 페이지")
@@ -273,3 +271,110 @@ with st.expander("💡 과제 2 예시 답안"):
         st.write("대시보드 설정")
         st.checkbox("자동 새로고침")
         st.selectbox("새로고침 간격:", ["1분", "5분", "10분"])
+
+
+# 지피티 캡쳐
+
+import streamlit as st
+
+st.set_page_config(layout="wide")
+
+st.markdown(
+    "<h2 style='margin-bottom: 20px;'>제품 상세 페이지</h2>",
+    unsafe_allow_html=True,
+)
+
+with st.container():
+    col1, col2 = st.columns([3, 4])
+
+    # 왼쪽: 이미지
+    with col1:
+        st.image(
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ96jQ9W4bT93OXaPYPMiX3hSW3ioFRp-2mCA&s",
+            use_container_width=True,
+        )
+
+    # 오른쪽: 정보
+    with col2:
+        st.markdown(
+            """
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
+                <span style="font-size:22px;">🎧</span>
+                <span style="font-size:24px; font-weight:700;">무선 헤드폰 <span style="font-weight:400;">Pro</span></span>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+        st.markdown("<div style='color:#555;'>₩299,000</div>", unsafe_allow_html=True)
+
+        st.markdown(
+            """
+            <div style="margin:4px 0 12px 0;">
+                <span style="color:#f1c40f; font-size:18px;">★★★★★</span>
+                <span style="font-size:13px; color:#555; margin-left:6px;">
+                    (4.8) - 리뷰 324개
+                </span>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+        st.markdown("<hr>", unsafe_allow_html=True)
+        st.write("고급 노이즈 캔슬링 기능이 탑재된 프리미엄 무선 헤드폰")
+
+        # 수량
+        st.markdown("**수량:**")
+        q_col1, q_col2, q_col3 = st.columns([1, 2, 1])
+        with q_col1:
+            minus = st.button("−", key="qty_minus")
+        with q_col2:
+            quantity = st.number_input(
+                "",
+                min_value=1,
+                max_value=99,
+                value=1,
+                step=1,
+                label_visibility="collapsed",
+                key="qty_input",
+            )
+        with q_col3:
+            plus = st.button("+", key="qty_plus")
+
+        # 장바구니 / 바로구매 버튼
+        b1, b2 = st.columns([1, 1])
+        with b1:
+            cart = st.button("🛒 장바구니", use_container_width=True, key="btn_cart")
+        with b2:
+            buy = st.button("📘 바로 구매", use_container_width=True, key="btn_buy")
+
+        if cart:
+            st.success(f"{quantity}개를 장바구니에 담았습니다.")
+        if buy:
+            st.success(f"{quantity}개를 바로 구매합니다.")
+
+st.markdown("<hr>", unsafe_allow_html=True)
+
+tab1, tab2, tab3 = st.tabs(["📕 상세설명", "⭐ 리뷰", "🚚 배송정보"])
+
+with tab1:
+    st.subheader("주요 특징")
+    st.markdown(
+        """
+        - 최대 30시간 재생  
+        - 고급 노이즈 캔슬링  
+        - 블루투스 5.0
+        """
+    )
+
+with tab2:
+    st.markdown("**평균 평점:** ⭐ 4.8/5.0")
+    st.markdown("---")
+    st.markdown("**김철수**: ⭐⭐⭐⭐⭐")
+    st.write("정말 좋아요!")
+
+with tab3:
+    st.info("무료 배송 (2–3일 소요)")
+
+with st.expander("❓ 자주 묻는 질문"):
+    st.write("교환/반품, A/S 관련 자주 묻는 질문을 여기에 넣을 수 있습니다.")
